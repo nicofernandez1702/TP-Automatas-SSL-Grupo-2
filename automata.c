@@ -27,6 +27,34 @@ int h4 = esHexa("124");
 printf("Decimal 12: %d \nDecimal 1254ss2: %d \nDecimal 02145: %d \n",a, a2, a3);
 printf("Octal 0215: %d \nOctal 01d24: %d \nOctal 124: %d \n", o, o2, o3);
 printf("Hexa 0x12345ABCDEF: %d \nHexa 0123456789ABCD: %d \nHexa 214124asf: %d \nHexa 124:%d \n", h, h2, h3, h4);
+
+char cadena[MAX_CADENA] = "12345&135&0124&0x1245F&51&0215&f32023f&25125&00"; //4 dec 3 oct 1 hexa
+
+char c = cadena[0];
+int i = 0;
+char numero[MAX_CADENA] = "";
+char vacio[MAX_CADENA] = "";
+int decimales = 0;
+int octales = 0;
+int hexadecimales = 0;
+while(c != '\0'){
+   while(c != '&' && c != '\0'){
+   strncat(numero, &c, 1);
+   i++;
+   c = cadena[i];
+   }
+   if(esDecimal(numero)) decimales++;
+   else if(esOctal(numero)) octales++;
+   else if(esHexa(numero)) hexadecimales++;
+   printf("Numero: %s \n", &numero);
+   i++;
+   c = cadena[i];
+   strcpy(numero, vacio);
+}
+
+printf("Cant Decimales: %d\nCant Octales: %d\nCant Hexadecimales: %d", decimales, octales, hexadecimales);
+
+
 return 0;
 }
 
