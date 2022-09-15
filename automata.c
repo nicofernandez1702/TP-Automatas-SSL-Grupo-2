@@ -37,22 +37,24 @@ char vacio[MAX_CADENA] = "";
 int decimales = 0;
 int octales = 0;
 int hexadecimales = 0;
+int errores = 0;
 while(c != '\0'){
    while(c != '&' && c != '\0'){
    strncat(numero, &c, 1);
    i++;
    c = cadena[i];
    }
+   printf("Numero: %s \n", &numero);
    if(esDecimal(numero)) decimales++;
    else if(esOctal(numero)) octales++;
    else if(esHexa(numero)) hexadecimales++;
-   printf("Numero: %s \n", &numero);
+   else errores++;
    i++;
    c = cadena[i];
    strcpy(numero, vacio);
 }
 
-printf("Cant Decimales: %d\nCant Octales: %d\nCant Hexadecimales: %d", decimales, octales, hexadecimales);
+printf("Cant Decimales: %d\nCant Octales: %d\nCant Hexadecimales: %d\nErrores: %d\n", decimales, octales, hexadecimales, errores);
 
 
 return 0;
@@ -70,8 +72,8 @@ int esDecimal(const char* cadena){
       i++;
       c = cadena[i];
    }
-   if (e == 2) return 0;
-   return 1;
+   if (e == 1) return 1;
+   return 0;
 }
 
 int columnadecimal(int c){
@@ -93,8 +95,8 @@ int esOctal(const char* cadena){
       i++;
       c = cadena[i];
    }
-   if (e == 2) return 0;
-   return 1;
+   if (e == 1) return 1;
+   return 0;
 }
 
 int columnaoctal(int c){
@@ -117,8 +119,8 @@ int esHexa(const char* cadena){
       i++;
       c = cadena[i];
    }
-   if (e == 3) return 0;
-   return 1;
+   if (e == 2) return 1;
+   return 0;
 }
 
 int columnahexa(int c){
